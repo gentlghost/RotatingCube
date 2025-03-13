@@ -59,16 +59,31 @@ func vec3_2_projection(vec: Vector3, perspect: bool = false) -> Vector2:
 	return Vector2(x, y)
 
 """Rotation methods"""
+"""
+	[      1][      0][      0]
+x = [      0][ sin(a)][-cos(a)]
+	[      0][ cos(a)][ sin(a)]
+"""
 func vec3_rotation_x(vec: Vector3, theta: float) -> Vector3:
 	var y = vec.y * sin(theta) + vec.z * -cos(theta)
 	var z = vec.y * cos(theta) + vec.z * sin(theta)
 	return Vector3(vec.x, y, z)
 
+"""
+	[ sin(a)][      0][-cos(a)]
+y = [      0][      1][      0]
+	[ cos(a)][      0][ sin(a)]
+"""
 func vec3_rotation_y(vec: Vector3, theta: float) -> Vector3:
 	var x = vec.x * sin(theta) + vec.z * -cos(theta)
 	var z = vec.x * cos(theta) + vec.z * sin(theta)
 	return Vector3(x, vec.y, z)
 
+"""
+	[ sin(a)][-cos(a)][      0]
+z = [ cos(a)][ sin(a)][      0]
+	[      0][      0][      1]
+"""
 func vec3_rotation_z(vec: Vector3, theta: float) -> Vector3:
 	var x = vec.x * sin(theta) + vec.y * -cos(theta)
 	var y = vec.x * cos(theta) + vec.y * sin(theta)
